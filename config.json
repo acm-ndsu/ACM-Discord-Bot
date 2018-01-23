@@ -1,6 +1,7 @@
 {
     "handlers": [
         "test",
-        "cowsay"
+        "cowsay",
+        "totoro"
     ]
 }
