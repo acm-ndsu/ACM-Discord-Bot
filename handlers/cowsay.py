@@ -11,7 +11,7 @@ class Handler(MessageHandler):
         self.description = self.signal + " <message> : Makes a cow say your message."
 
         # displatyed when !help test is called
-        self.help = self.signal + """ : !cowsay <message> : Makes a cow say you message.
+        self.help = self.signal + """ <message> : Makes a cow say you message.
         The message is a string following the command.
         """
 
