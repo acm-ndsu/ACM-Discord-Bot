@@ -21,7 +21,7 @@ class Handler(MessageHandler):
 
         if message.content.startswith(self.signal):
 
-            msg = messag.content.replace(self.signal+" ", "")
+            msg = message.content.replace(self.signal+" ", "")
             msg = cowsay.cow(msg)
 
             await client.send_message(message.channel, msg)
