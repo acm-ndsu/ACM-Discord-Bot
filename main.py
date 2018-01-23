@@ -28,7 +28,7 @@ async def on_message(message):
             for handler in message_handlers:
                 output += handler.description + "\n"
 
-            await client.send_message(messaege.channel, output)
+            await client.send_message(message.channel, output)
 
         else:
             content = content.split()
