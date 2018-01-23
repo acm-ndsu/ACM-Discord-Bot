@@ -2,7 +2,9 @@
 class MessageHandler:
 
     def __init__(self):
-        pass
+        self.signal = ""
+        self.description = ""
+        self.help = ""
 
 
     def handle_message(self, client, message):

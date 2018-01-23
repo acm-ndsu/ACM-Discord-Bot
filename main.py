@@ -18,9 +18,32 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
+    # Handle help command
+    if message.content.startswith("!help"):
+
+        content = message.content.replace("!help", "").strip()
+
+        if len(content) == 0:
+            output = ""
+            for handler in message_handlers:
+                output += handler.description + "\n"
+
+            await client.send_message(messaege.channel, output)
+
+        else:
+            content = content.split()
+            signal = "!" + content[0]
+
+            for handler in message_handlers:
+                if handler.signal == signal:
+                    await client.send_message(message.channel, content.help)
+                    break
+
+
 
     for handler in message_handlers:
         await handler.handle_message(client, message)
+
 
     if message.content.startswith('!sleep'):
         await asyncio.sleep(5)

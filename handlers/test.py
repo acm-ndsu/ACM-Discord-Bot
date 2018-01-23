@@ -1,21 +1,23 @@
 import asyncio
+import random
 from handlers.message_handler import MessageHandler
 
 class Handler(MessageHandler):
-    """
-    Calculates and returns how many times the user has sent the "!test" command to the bot.
-    """
+    def __init__(self):
+        self.signal = "!test"
+
+        # displayed when !help is called
+        self.description = self.signal + " : Calculates and returns random number"
+
+        # displatyed when !help test is called
+        self.help = self.signal + """ : Generates a random number between 0 and 10000
+
+        """
+
 
 
     async def handle_message(self, client, message):
 
-        if message.content.startswith('!test'):
-            counter = 0
-            tmp = await client.send_message(message.channel, 'Calculating messages...')
-            await client.send_message(message.channel, 'Done sleeping')
+        if message.content.startswith(self.signal):
 
-            async for log in client.logs_from(message.channel, limit=100):
-                if log.author == message.author:
-                    counter += 1
-
-            await client.edit_message(tmp, 'You have {} messages.'.format(counter))
+            await client.edit_message(tmp, 'Your number {}.'.format(random.randint(0, 10000)))

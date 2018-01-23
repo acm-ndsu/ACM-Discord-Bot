@@ -1,6 +1,6 @@
 # ACM Discord Bot 
 
-To extend the bot, create a class in ```handlers/``` that inherits ```handlers/message_handle.py`` and implements the ```handle_message()``` method. 
+To extend the bot, create a class in ```handlers/``` that inherits ```handlers/message_handle.py``` and implements the ```handle_message()``` method. Then add the module name to config.json.
 
 An example ```test.py``` can be found in the ```handlers/``` directory.
 
