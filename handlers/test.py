@@ -20,4 +20,4 @@ class Handler(MessageHandler):
 
         if message.content.startswith(self.signal):
 
-            await client.edit_message(tmp, 'Your number {}.'.format(random.randint(0, 10000)))
+            await client.edit_message(message.channel, 'Your number {}.'.format(random.randint(0, 10000)))
