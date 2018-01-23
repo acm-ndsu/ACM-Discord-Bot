@@ -1,6 +1,6 @@
 import asyncio
 import random
-import cowsay
+from cowpy import cow
 from handlers.message_handler import MessageHandler
 
 class Handler(MessageHandler):
@@ -22,6 +22,8 @@ class Handler(MessageHandler):
         if message.content.startswith(self.signal):
 
             msg = message.content.replace(self.signal+" ", "")
-            msg = cowsay.cow(msg)
+            msg = cow.milk_random_cow(msg)
+
+            msg = "```" + msg + "```"
 
             await client.send_message(message.channel, msg)
