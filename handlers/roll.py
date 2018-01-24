@@ -17,7 +17,6 @@ class Handler(MessageHandler):
     async def handle_message(self, client, message):
         args = message.content.split(" ", 1)
         if args[0] == self.signal:
-            print("got signal")
             sides = 6
             count = 1
             if len(args) > 1:
