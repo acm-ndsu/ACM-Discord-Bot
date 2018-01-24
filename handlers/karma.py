@@ -32,7 +32,7 @@ class Handler(MessageHandler):
 
     async def handle_message(self, client, message):
         msg = None
-        m = re.search(r'(<@!\d+>)\s*(\+\++|--+)$', message.content, re.DOTALL)
+        m = re.search(r'<@!?(\d+)>\s*(\+\++|--+)$', message.content, re.DOTALL)
         if m is not None:
             user = m.group(1)
             amount_str = m.group(2)
@@ -40,7 +40,7 @@ class Handler(MessageHandler):
             if amount_str.startswith('-'):
                 amount *= -1
             if amount is not None:
-                if user == message.author.mention:
+                if user == message.author.id:
                     msg = "You cannot set karma on yourself!"
                 elif abs(amount) > self.buzzkill_limit > 0:
                     msg = "Buzzkill mode enabled;"
@@ -50,25 +50,25 @@ class Handler(MessageHandler):
         else:
             args = message.content.split(" ", 1)
             if args[0] == self.signal:
-                msg = ""
                 if len(args) < 2:
-                    msg = self.get_user_karma(message.author.mention)
+                    msg = self.get_user_karma(message.author.id)
                 else:
-                    user = args[1]
-                    msg = self.get_user_karma(user)
+                    m = re.search(r'<@!?(\d+)>', args[1], re.DOTALL)
+                    if m is not None:
+                        msg = self.get_user_karma(m.group(1))
         if msg is not None:
             await client.send_message(message.channel, msg)
 
-    def get_user_karma(self, mention_str):
-        amt = self.karma.get(mention_str, 0)
-        msg = mention_str + ": karma is at " + str(amt)
+    def get_user_karma(self, uuid):
+        amt = self.karma.get(uuid, 0)
+        msg = "<@" + uuid + ">: karma is at " + str(amt)
         return msg
 
-    def add_user_karma(self, mention_str, amount):
-        if mention_str not in self.karma:
-            self.karma[mention_str] = 0
-        self.karma[mention_str] += amount
-        msg = mention_str + ": karma is now " + str(self.karma[mention_str])
+    def add_user_karma(self, uuid, amount):
+        if uuid not in self.karma:
+            self.karma[uuid] = 0
+        self.karma[uuid] += amount
+        msg = "<@" + uuid + ">: karma is now " + str(self.karma[uuid])
         try:
             self.save()
         except:
