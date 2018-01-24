@@ -1,2 +1,5 @@
 token.txt
 __pycache__/
+
+# stupid pycharm
+.idea/
