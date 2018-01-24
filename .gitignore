@@ -3,3 +3,7 @@ __pycache__/
 
 # stupid pycharm
 .idea/
+
+#pickle files
+*.pkl
+

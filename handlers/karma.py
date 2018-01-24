@@ -44,7 +44,7 @@ class Handler(MessageHandler):
                     msg = "You cannot set karma on yourself!"
                 elif abs(amount) > self.buzzkill_limit > 0:
                     msg = "Buzzkill mode enabled;"
-                    msg += " karma change greater than " + str(self.buzzkill_limit) + "not allowed"
+                    msg += " karma change greater than " + str(self.buzzkill_limit) + " not allowed"
                 else:
                     msg = self.add_user_karma(user, amount)
         else:
