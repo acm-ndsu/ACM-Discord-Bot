@@ -22,7 +22,7 @@ class Handler(MessageHandler):
             pass  # that's okay; swallow
 
         # displayed when !help is called
-        self.description = self.signal + ": Bestow the given amount of karma from person."""
+        self.description = self.signal + ": Karma system."""
 
         # displatyed when !help test is called
         self.help = self.signal + """ : Check how much karma you have."""
@@ -32,8 +32,8 @@ class Handler(MessageHandler):
 
     async def handle_message(self, client, message):
         args = message.content.split(" ", 1)
-        msg = ""
         if args[0] == self.signal:
+            msg = ""
             if len(args) < 2:
                 msg = self.get_user_karma(message.author.mention)
             else:
@@ -54,7 +54,7 @@ class Handler(MessageHandler):
                         msg = self.add_user_karma(user, amount)
                 else:
                     msg = self.get_user_karma(user)
-        await client.send_message(message.channel, msg)
+            await client.send_message(message.channel, msg)
 
     def get_user_karma(self, mention_str):
         if mention_str not in self.karma:
