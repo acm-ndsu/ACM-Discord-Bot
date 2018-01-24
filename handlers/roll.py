@@ -1,6 +1,5 @@
 import asyncio
 import random
-import argparse
 from handlers.message_handler import MessageHandler
 
 class Handler(MessageHandler):
