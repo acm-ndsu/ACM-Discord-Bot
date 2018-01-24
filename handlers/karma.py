@@ -40,7 +40,9 @@ class Handler(MessageHandler):
             if amount_str.startswith('-'):
                 amount *= -1
             if amount is not None:
-                if abs(amount) > self.buzzkill_limit > 0:
+                if user == message.author.mention:
+                    msg = "You cannot set karma on yourself!"
+                elif abs(amount) > self.buzzkill_limit > 0:
                     msg = "Buzzkill mode enabled;"
                     msg += " karma change greater than " + str(self.buzzkill_limit) + "not allowed"
                 else:
