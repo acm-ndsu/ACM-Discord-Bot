@@ -25,41 +25,41 @@ class Handler(MessageHandler):
         self.description = self.signal + ": Karma system."""
 
         # displatyed when !help test is called
-        self.help = self.signal + """ : Check how much karma you have."""
-        self.help += self.signal + """ <User-Mention><Amount> : Bestow the given amount of ++/-- from person."""
-        self.help += "\n" + self.signal + " <User-Mention> : Show how much karma the given user has."""
+        self.help = self.signal + " : Check how much karma you have."
+        self.help += self.signal + " <User-Mention><Amount> : Bestow the given amount of ++/-- from person."
+        self.help += "\n" + self.signal + " <User-Mention> : Show how much karma the given user has."
 
 
     async def handle_message(self, client, message):
-        args = message.content.split(" ", 1)
-        if args[0] == self.signal:
-            msg = ""
-            if len(args) < 2:
-                msg = self.get_user_karma(message.author.mention)
-            else:
-                user = args[1]
-                amount = None
-                m = re.search(r'(\+\++|--+)$', user, re.DOTALL)
-                if m is not None:
-                    user = user.rstrip("+-")
-                    amount_str = m.group(1)
-                    amount = len(amount_str) - 1
-                    if amount_str.startswith('-'):
-                        amount *= -1
-                if amount is not None:
-                    if self.buzzkill_limit > 0 and abs(amount) > self.buzzkill_limit:
-                        msg = "Buzzkill mode enabled;"
-                        msg += " karma change greater than " + str(self.buzzkill_limit) + "not allowed"
-                    else:
-                        msg = self.add_user_karma(user, amount)
+        msg = None
+        m = re.search(r'(<@\d+>)(\+\++|--+)$', message.content, re.DOTALL)
+        if m is not None:
+            user = m.group(1)
+            amount_str = m.group(2)
+            amount = len(amount_str) - 1
+            if amount_str.startswith('-'):
+                amount *= -1
+            if amount is not None:
+                if abs(amount) > self.buzzkill_limit > 0:
+                    msg = "Buzzkill mode enabled;"
+                    msg += " karma change greater than " + str(self.buzzkill_limit) + "not allowed"
                 else:
+                    msg = self.add_user_karma(user, amount)
+        else:
+            args = message.content.split(" ", 1)
+            if args[0] == self.signal:
+                msg = ""
+                if len(args) < 2:
+                    msg = self.get_user_karma(message.author.mention)
+                else:
+                    user = args[1]
                     msg = self.get_user_karma(user)
+        if msg is not None:
             await client.send_message(message.channel, msg)
 
     def get_user_karma(self, mention_str):
-        if mention_str not in self.karma:
-            self.karma[mention_str] = 0
-        msg = mention_str + ": karma is at " + str(self.karma[mention_str])
+        amt = self.karma.get(mention_str, 0)
+        msg = mention_str + ": karma is at " + str(amt)
         return msg
 
     def add_user_karma(self, mention_str, amount):
