@@ -32,7 +32,7 @@ class Handler(MessageHandler):
 
     async def handle_message(self, client, message):
         msg = None
-        m = re.search(r'(<@\d+>)(\+\++|--+)$', message.content, re.DOTALL)
+        m = re.search(r'(<@!\d+>)\s*(\+\++|--+)$', message.content, re.DOTALL)
         if m is not None:
             user = m.group(1)
             amount_str = m.group(2)
