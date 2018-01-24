@@ -4,7 +4,6 @@ from datetime import datetime, timedelta
 
 
 one_hour = timedelta(minutes=60)
-timeout = datetime.now().replace(microsecond=0, second=0, minute=0) + one_hour
 
 while True:
 
@@ -12,12 +11,15 @@ while True:
     process = subprocess.Popen(["python", "main.py"])
 
 
-    print("Sleeping till: " ,timeout)
-    current_time = datetime.now()
-    while current_time < timeout:
-        time.sleep(1)
-
     timeout = datetime.now().replace(microsecond=0, second=0, minute=0) + one_hour
+    current_time = datetime.now()
+
+    print("Sleeping till: " ,timeout)
+    while current_time < timeout:
+        print(current_time)
+        time.sleep(1)
+        current_time = datetime.now()
+
 
 
     print("Killing bot.")
