@@ -4,6 +4,7 @@ from handlers.message_handler import MessageHandler
 
 class Handler(MessageHandler):
     def __init__(self):
+        super().__init__()
         self.signal = "!roll"
 
         # displayed when !help is called
@@ -11,12 +12,12 @@ class Handler(MessageHandler):
 
         # displatyed when !help test is called
         self.help = self.signal + """ <X>d<Y> : Rolls a Y-sided die X times."""
-        super().__init__()
 
 
     async def handle_message(self, client, message):
         args = message.content.split(" ", 1)
         if args[0] == self.signal:
+            print("got signal")
             sides = 6
             count = 1
             if len(args) > 1:
@@ -43,5 +44,6 @@ class Handler(MessageHandler):
                     rolls += str(r) + ", "
                     total += r
                 msg = message.author.mention + " rolled {0:d}d{1:d}..."
-                msg += "\n{2:s}\nTotal: {3:d}".format(count, sides, rolls, total)
-            await client.send_message(msg)
+                msg += "\n{2:s}\nTotal: {3:d}"
+                msg = msg.format(count, sides, rolls, total)
+            await client.send_message(message.channel, msg)
