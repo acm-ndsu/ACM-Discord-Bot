@@ -34,7 +34,7 @@ class Handler(MessageHandler):
         args = message.content.split(" ", 1)
         if args[0] == self.signal:
             msg = ""
-            if len(args) < 1:
+            if len(args) < 2:
                 msg = self.get_user_karma(message.author.mention)
             else:
                 user = args[1]
