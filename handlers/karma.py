@@ -32,8 +32,8 @@ class Handler(MessageHandler):
 
     async def handle_message(self, client, message):
         args = message.content.split(" ", 1)
+        msg = ""
         if args[0] == self.signal:
-            msg = ""
             if len(args) < 2:
                 msg = self.get_user_karma(message.author.mention)
             else:
@@ -54,6 +54,7 @@ class Handler(MessageHandler):
                         msg = self.add_user_karma(user, amount)
                 else:
                     msg = self.get_user_karma(user)
+        await client.send_message(message.channel, msg)
 
     def get_user_karma(self, mention_str):
         if mention_str not in self.karma:
