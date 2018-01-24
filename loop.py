@@ -16,7 +16,6 @@ while True:
 
     print("Sleeping till: " ,timeout)
     while current_time < timeout:
-        print(current_time)
         time.sleep(1)
         current_time = datetime.now()
 
