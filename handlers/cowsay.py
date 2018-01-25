@@ -14,6 +14,8 @@ class Module(HandlerModule):
 
 class CowsayHandler(MessageHandler):
     def __init__(self):
+        super().__init__()
+
         self.signal = "!cowsay"
 
         self.params = "<message>"

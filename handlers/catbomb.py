@@ -16,6 +16,7 @@ class Module(HandlerModule):
 
 class CatBombHandler(MessageHandler):
     def __init__(self):
+        super().__init__()
         self.signal = "!catbomb"
 
         # displayed when !help is called

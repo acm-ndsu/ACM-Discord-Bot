@@ -15,6 +15,7 @@ class Module(HandlerModule):
 
 class AnimeHandler(MessageHandler):
     def __init__(self):
+        super().__init__()
         self.signal = "!anime"
 
         self.params = "<top> | <bottom>"

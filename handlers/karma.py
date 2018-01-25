@@ -1,28 +1,28 @@
 import asyncio
 import random
 import pickle
-from handlers.message_handler import MessageHandler
 import re
+from handlers.message_handler import HandlerModule, MessageHandler
 
-_karma_filename = 'karma.pkl'
 
-class Handler(MessageHandler):
+class Module(HandlerModule):
+    def __init__(self):
+        super().__init__("karma")
+
+    def init_handlers(self):
+
+        self.handlers.append( GiveKarmaHandler() )
+
+
+class GiveKarmaHandler(MessageHandler):
     def __init__(self):
         super().__init__()
         self.buzzkill_limit = 5
         self.signal = "!karma"
         self.karma = {}
 
-        try:
-            with open(_karma_filename, 'rb') as karma_file:
-                karma_state = pickle.load(karma_file)
-                self.buzzkill_limit = karma_state['buzzkill']
-                self.karma = karma_state['karma']
-        except FileNotFoundError:
-            pass  # that's okay; swallow
-
         # displayed when !help is called
-        self.description = self.signal + ": Karma system."""
+        self.short_description = "Karma system."
 
         # displatyed when !help test is called
         self.help = self.signal + " : Check how much karma you have."
@@ -75,7 +75,3 @@ class Handler(MessageHandler):
             msg += "\n(WARN): could not save karma file. Admin should investigate"
         return msg
 
-    def save(self):
-        data = {'buzzkill': self.buzzkill_limit, 'karma': self.karma}
-        with open(_karma_filename, 'wb') as karma_file:
-            pickle.dump(data, karma_file)
