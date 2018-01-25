@@ -1,7 +1,9 @@
 {
     "handlers": [
         "test",
-        "cowsay",
+        "cowsay"
+    ],
+    "disabled": [
         "totoro",
         "meme",
         "anime",

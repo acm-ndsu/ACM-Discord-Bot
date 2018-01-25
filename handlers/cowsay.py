@@ -1,23 +1,33 @@
 import asyncio
 import random
 from cowpy import cow
-from handlers.message_handler import MessageHandler
+from handlers.message_handler import HandlerModule, MessageHandler
 
-class Handler(MessageHandler):
+
+class Module(HandlerModule):
+    def __init__(self):
+        super().__init__("cowsay")
+
+
+    def init_handlers(self):
+
+        self.handlers.append( CowsayHandler() )
+
+class CowsayHandler(MessageHandler):
     def __init__(self):
         self.signal = "!cowsay"
 
+        self.params = "<message>"
+
         # displayed when !help is called
-        self.description = self.signal + " <message> : Makes a cow say your message."
+        self.short_description = "Makes a cow say your message."
 
         # displatyed when !help test is called
-        self.help = self.signal + """ <message> : Makes a cow say you message.
-        The message is a string following the command.
-        """
+        self.long_description = "Makes a cow say you message. The message is a string following the command."
 
 
 
-    async def handle_message(self, client, message):
+    async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
 
