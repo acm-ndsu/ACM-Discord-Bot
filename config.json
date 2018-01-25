@@ -2,12 +2,12 @@
     "handlers": [
         "test",
         "cowsay",
+        "anime",
         "8ball"
     ],
     "disabled": [
         "totoro",
         "meme",
-        "anime",
         "roll",
         "karma",
         "catbomb",

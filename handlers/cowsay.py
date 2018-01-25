@@ -8,7 +8,6 @@ class Module(HandlerModule):
     def __init__(self):
         super().__init__("cowsay")
 
-
     def init_handlers(self):
 
         self.handlers.append( CowsayHandler() )
