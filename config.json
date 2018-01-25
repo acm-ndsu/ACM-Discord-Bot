@@ -1,7 +1,8 @@
 {
     "handlers": [
         "test",
-        "cowsay"
+        "cowsay",
+        "8ball"
     ],
     "disabled": [
         "totoro",
@@ -9,7 +10,6 @@
         "anime",
         "roll",
         "karma",
-        "8ball",
         "catbomb",
         "slap",
         "hug",
