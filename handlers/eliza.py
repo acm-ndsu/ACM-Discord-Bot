@@ -1,7 +1,7 @@
 import asyncio
 import random
 import pickle
-from handlers.message_handler import MessageHandler
+from handlers.message_handler import HandlerModule, MessageHandler
 import re
 import random
 
@@ -251,19 +251,30 @@ def analyze(statement):
 
 
 
-class Handler(MessageHandler):
+class Module(HandlerModule):
+    def __init__(self):
+        super().__init__("eliza")
+
+    def init_handlers(self):
+
+        self.handlers.append( ElizaHandler() )
+
+
+class ElizaHandler(MessageHandler):
     def __init__(self):
         super().__init__()
         self.signal = "!eliza"
 
+        self.params = "<statement>"
+
         # displayed when !help is called
-        self.description = self.signal + " <statement> : consults with your automated psychotherepist."
+        self.short_description = "Consult with your automated psychotherepist."
 
         # displayed when !help test is called
-        self.help = self.signal + """ <statement> : consults with your automated psychotherepist."""
+        self.long_description = "Consults with your automated psychotherepist."
 
 
-    async def handle_message(self, client, message):
+    async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
 
