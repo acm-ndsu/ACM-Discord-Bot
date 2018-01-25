@@ -3,6 +3,7 @@
         "test",
         "cowsay",
         "anime",
+        "catbomb",
         "8ball"
     ],
     "disabled": [
@@ -10,7 +11,6 @@
         "meme",
         "roll",
         "karma",
-        "catbomb",
         "slap",
         "hug",
         "oksana",

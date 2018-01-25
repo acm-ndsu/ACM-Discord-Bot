@@ -6,7 +6,7 @@ from handlers.message_handler import HandlerModule, MessageHandler
 
 class Module(HandlerModule):
     def __init__(self):
-        super().__init__("cowsay")
+        super().__init__("anime")
 
     def init_handlers(self):
 
