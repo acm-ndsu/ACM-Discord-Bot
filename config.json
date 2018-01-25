@@ -5,6 +5,7 @@
         "anime",
         "catbomb",
         "8ball",
+        "hug",
         "eliza"
     ],
     "disabled": [
@@ -13,7 +14,6 @@
         "roll",
         "karma",
         "slap",
-        "hug",
         "oksana"
     ]
 }

@@ -1,5 +1,6 @@
 import pickle
 import re
+import copy
 
 class HandlerModule:
 
@@ -12,14 +13,14 @@ class HandlerModule:
             clean_module_name = re.sub(r'\W+', '', self.module_name)
             self.pickle_file = clean_module_name + ".pkl"
             try:
-                with open(count_filename, 'rb') as f:
+                with open(self.pickle_file, 'rb') as f:
                     self.shared_state = pickle.load(f)
             except FileNotFoundError:
                 self.shared_state = {}
         else:
             self.shared_state = {}
 
-        self.shared_state_cache = dict(self.shared_state)
+        self.shared_state_cache = copy.deepcopy(self.shared_state)
 
 
     async def handle_message(self, client, message):
@@ -29,11 +30,11 @@ class HandlerModule:
         # if shared stared changed and persist_state is true,
         # then persist the changes and update the comparison cache
         if self.persist_state and self.shared_state != self.shared_state_cache:
-            self.shared_state_cache = dict(self.shared_state)
+            self.shared_state_cache = copy.deepcopy(self.shared_state)
             self.save()
 
     def save(self):
-        with open(self.picke_file, 'wb') as f:
+        with open(self.pickle_file, 'wb') as f:
             pickle.dump(self.shared_state, f)
 
     def handle_help(self, command_name=None):
