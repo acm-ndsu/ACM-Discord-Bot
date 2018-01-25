@@ -24,9 +24,10 @@ async def on_message(message):
         content = message.content.replace("!help", "").strip()
 
         if len(content) == 0:
-            output = ""
+            output = "```\n"
             for handler in message_handlers:
-                output += handler.description + "\n"
+                output += "# " + handler.description + "\n"
+            output += "```"
 
             await client.send_message(message.channel, output)
 
