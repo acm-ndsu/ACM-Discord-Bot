@@ -9,11 +9,11 @@
         "karma",
         "meme",
         "eliza",
+        "roll",
         "oksana"
     ],
     "disabled": [
         "totoro",
-        "roll",
         "slap"
     ]
 }
