@@ -1,22 +1,32 @@
 import asyncio
 import random
 import pickle
-from handlers.message_handler import MessageHandler
+from handlers.message_handler import HandlerModule, MessageHandler
 
 
-class Handler(MessageHandler):
+class Module(HandlerModule):
+    def __init__(self):
+        super().__init__("oksana", persist_state=False)
+
+    def init_handlers(self):
+
+        self.handlers.append( OksanaHandler() )
+
+
+
+class OksanaHandler(MessageHandler):
     def __init__(self):
         super().__init__()
         self.signal = "!oksana"
 
         # displayed when !help is called
-        self.description = self.signal + " : quotes Oksana"
+        self.short_description = "Quotes Oksana."
 
         # displayed when !help test is called
-        self.help = self.signal + """ : quotes Oksana."""
+        self.long_description = "Quotes Oksana."
 
 
-    async def handle_message(self, client, message):
+    async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
             phrase = random.choice([

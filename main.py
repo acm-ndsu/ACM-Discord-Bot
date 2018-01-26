@@ -6,7 +6,7 @@ import discord
 
 client = discord.Client()
 
-message_handlers = []
+modules = []
 
 @client.event
 async def on_ready():
@@ -23,32 +23,34 @@ async def on_message(message):
 
         content = message.content.replace("!help", "").strip()
 
+        print("a", content)
         if len(content) == 0:
             output = "```\n"
-            for handler in message_handlers:
-                output += "# " + handler.description + "\n"
+            for module in modules:
+                output += module.handle_help() + "\n"
             output += "```"
 
             await client.send_message(message.author, output)
 
         else:
             content = content.split()
-            signal = "!" + content[0]
+            signal = content[0]
 
-            for handler in message_handlers:
-                if handler.signal == signal:
-                    await client.send_message(message.channel, content.help)
-                    break
+            output = ""
+
+            for module in modules:
+                output += module.handle_help(command_name=signal)
+
+            await module.send_message(message.channel, output)
+    else:
+
+        for module in modules:
+            await module.handle_message(client, message)
 
 
-
-    for handler in message_handlers:
-        await handler.handle_message(client, message)
-
-
-    if message.content.startswith('!sleep'):
-        await asyncio.sleep(5)
-        await client.send_message(message.channel, 'Done sleeping')
+        if message.content.startswith('!sleep'):
+            await asyncio.sleep(5)
+            await client.send_message(message.channel, 'Done sleeping')
 
 if __name__ == "__main__":
 
@@ -58,8 +60,14 @@ if __name__ == "__main__":
     print("Loading Modules...")
     for module_name in config["handlers"]:
         module = importlib.import_module("handlers." + module_name)
-        message_handlers.append(module.Handler())
+        modules.append(module.Module())
     print("Modules loaded.")
+
+    print("Initializing Modules...")
+    for module in modules:
+        module.init_handlers()
+    print("Modules initialized.")
+
 
     with open("token.txt", "r") as f:
         token = f.read().replace("\n", "")

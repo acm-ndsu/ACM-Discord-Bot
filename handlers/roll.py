@@ -1,20 +1,31 @@
 import asyncio
 import random
-from handlers.message_handler import MessageHandler
+from handlers.message_handler import HandlerModule, MessageHandler
 
-class Handler(MessageHandler):
+
+class Module(HandlerModule):
+    def __init__(self):
+        super().__init__("roll", persist_state=True)
+
+    def init_handlers(self):
+
+        self.handlers.append( RollHandler() )
+
+class RollHandler(MessageHandler):
     def __init__(self):
         super().__init__()
         self.signal = "!roll"
 
+        self.params = "<X>d<Y>"
+
         # displayed when !help is called
-        self.description = self.signal + " <X>d<Y> : Rolls a Y-sided die X times."""
+        self.short_description = "Rolls a Y-sided die X times."
 
         # displatyed when !help test is called
-        self.help = self.signal + """ <X>d<Y> : Rolls a Y-sided die X times."""
+        self.long_description = "Rolls a Y-sided die X times."
 
 
-    async def handle_message(self, client, message):
+    async def handle_message(self, client, message, state):
         args = message.content.split(" ", 1)
         if args[0] == self.signal:
             sides = 6

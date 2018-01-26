@@ -2,17 +2,29 @@
 import asyncio
 import random
 import requests
-from handlers.message_handler import MessageHandler
+from handlers.message_handler import HandlerModule, MessageHandler
 
-class Handler(MessageHandler):
+class Module(HandlerModule):
     def __init__(self):
+        super().__init__("anime")
+
+    def init_handlers(self):
+
+        self.handlers.append( AnimeHandler() )
+
+
+class AnimeHandler(MessageHandler):
+    def __init__(self):
+        super().__init__()
         self.signal = "!anime"
 
+        self.params = "<top> | <bottom>"
+
         # displayed when !help is called
-        self.description = self.signal + " <top> | <bottom> : Generates a random anime meme. """
+        self.short_description = "Generates a random anime meme. """
 
         # displatyed when !help test is called
-        self.help = self.signal + """ <top> | <bottom> : Generates a random anime  meme using imgflip api."""
+        self.long_description = "Generates a random anime  meme using imgflip api."
 
         # precache ids
         self.ids = [
@@ -94,7 +106,7 @@ class Handler(MessageHandler):
             103202143
         ]
 
-    async def handle_message(self, client, message):
+    async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
 

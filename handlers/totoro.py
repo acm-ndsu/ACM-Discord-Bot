@@ -1,20 +1,31 @@
 import asyncio
 import random
-from handlers.message_handler import MessageHandler
+from handlers.message_handler import HandlerModule, MessageHandler
 
-class Handler(MessageHandler):
+
+class Module(HandlerModule):
     def __init__(self):
+        super().__init__("hug", persist_state=False)
+
+    def init_handlers(self):
+
+        self.handlers.append( TotoroHandler() )
+
+class TotoroHandler(MessageHandler):
+    def __init__(self):
+        super().__init__()
+
         self.signal = "!totoro"
 
         # displayed when !help is called
-        self.description = self.signal + " <message> : Draws a totoro."
+        self.short_description = "Draws a totoro."
 
         # displatyed when !help test is called
-        self.help = self.signal + """ <message> : Draws a totoro. """
+        self.long_description = "Draws a totoro."
 
 
 
-    async def handle_message(self, client, message):
+    async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
 

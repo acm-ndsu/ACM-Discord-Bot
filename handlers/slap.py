@@ -1,47 +1,92 @@
 import asyncio
 import random
 import pickle
-from handlers.message_handler import MessageHandler
+from handlers.message_handler import HandlerModule, MessageHandler
 
-count_filename = "slap_counts.pkl"
 
-class Handler(MessageHandler):
+class Module(HandlerModule):
+    def __init__(self):
+        super().__init__("slap", persist_state=True)
+
+    def init_handlers(self):
+
+        self.handlers.append( SlapHandler() )
+        self.handlers.append( SlapCountHandler() )
+
+class SlapHandler(MessageHandler):
     def __init__(self):
         super().__init__()
         self.signal = "!slap"
 
+        self.params = "<target>"
+
         # displayed when !help is called
-        self.description = self.signal + " <target> : Slaps target.\n"
-        self.description += self.signal + " count : Responds with the number of times you have been slapped."
+        self.short_description = "Slaps target."
 
         # displayed when !help test is called
-        self.help = self.signal + """ <target> : Slaps target."""
-        self.help += self.signal + """ count : Responds with the number of times you have been slapped."""
-
-        self.counts = {}
-
-        try:
-            with open(count_filename, 'rb') as f:
-                self.counts = pickle.load(f)
-        except FileNotFoundError:
-            pass  # that's okay; swallow
+        self.long_description = "Slaps target."
 
 
-    async def handle_message(self, client, message):
+    async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
-            signal, target = message.content.split(" ")
+
+            split = message.content.split(" ")
+            if not len(split) > 1:
+                return # bad input
+            target = split[1]
+
+
+            if "counts" not in state:
+                state["counts"] = {}
 
             if target == "count" or target is None or target == "":
-                msg = "{} has been slapped {} times".format(message.author.mention, self.counts[message.author.mention])
-                await client.send_message(message.channel, msg)
+
+                if message.author.mention in state["counts"]:
+                    msg = "{} has been slapped {} times".format(message.author.mention, state["counts"][message.author.mention])
+                    await client.send_message(message.channel, msg)
+                else:
+                    await client.send_message(message.channel, "People must like you, you haven't been slapped. Yet.")
+
+
+
+class SlapCountHandler(MessageHandler):
+    def __init__(self):
+        super().__init__()
+        self.signal = "!slap"
+
+        self.params = "count"
+
+        # displayed when !help is called
+        self.short_description = "Responds with the number of times you have been slapped."
+
+        # displayed when !help test is called
+        self.long_description = "Responds with the number of times you have been slapped."
+
+
+    async def handle_message(self, client, message, state):
+
+        if message.content.startswith(self.signal):
+            split = message.content.split(" ")
+            if not len(split) > 1:
+                return # bad input
+            target = split[1]
+
+            if "counts" not in state:
+                state["counts"] = {}
+
+            if target == "count" or target is None or target == "":
+
+                if message.author.mention in state["counts"]:
+                    msg = "{} has been slapped {} times".format(message.author.mention, state["counts"][message.author.mention])
+                    await client.send_message(message.channel, msg)
+                else:
+                    await client.send_message(message.channel, "People must like you, you haven't been slapped. Yet.")
 
             else:
-                if target not in self.counts:
-                    self.counts[target] = 0
-                self.counts[target] += 1
-
-                self.save()
+                if target not in state["counts"]:
+                    state["counts"][target] = 0
+                state["counts"][target] += 1
 
                 phrase = random.choice([
                     "{} slaps {} with a trout.",
@@ -55,7 +100,4 @@ class Handler(MessageHandler):
                 await client.send_message(message.channel, phrase.format(message.author.mention, target))
 
 
-    def save(self):
-        with open(count_filename, 'wb') as f:
-            pickle.dump(self.counts, f)
 
