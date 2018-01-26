@@ -1,19 +1,27 @@
 import asyncio
 import random
 import pickle
-from handlers.message_handler import MessageHandler
+from handlers.message_handler import MessageHandler, HandlerModule
 
 
-class Handler(MessageHandler):
+class Module(HandlerModule):
+    def __init__(self):
+        super().__init__("compliment")
+
+    def init_handlers(self):
+        self.handlers.append(ComplimentHandler())
+
+
+class ComplimentHandler(MessageHandler):
     def __init__(self):
         super().__init__()
         self.signal = "!compliment"
 
         #displayed when !help is called
-        self.description = self.signal + " : Offers a random compliment."
+        self.short_description = "Offers a random compliment."
 
         #displayed when !help test is called
-        self.help = self.signal + """ : Offers a random compliment."""
+        self.long_description = "Offers a random compliment composed from a list of nouns, verbs, and adjectives."
 
 
     async def handle_message(self, client, message):
