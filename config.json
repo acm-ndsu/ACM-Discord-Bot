@@ -8,12 +8,12 @@
         "hug",
         "karma",
         "meme",
-        "eliza"
+        "eliza",
+        "oksana"
     ],
     "disabled": [
         "totoro",
         "roll",
-        "slap",
-        "oksana"
+        "slap"
     ]
 }
