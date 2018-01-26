@@ -24,7 +24,7 @@ class ComplimentHandler(MessageHandler):
         self.long_description = "Offers a random compliment composed from a list of nouns, verbs, and adjectives."
 
 
-    async def handle_message(self, client, message):
+    async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
             noun = random.choice([
