@@ -10,10 +10,10 @@
         "meme",
         "eliza",
         "roll",
-        "oksana"
+        "oksana",
+        "slap"
     ],
     "disabled": [
-        "totoro",
-        "slap"
+        "totoro"
     ]
 }
