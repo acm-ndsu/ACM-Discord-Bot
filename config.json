@@ -6,13 +6,13 @@
         "catbomb",
         "8ball",
         "hug",
+        "karma",
         "eliza"
     ],
     "disabled": [
         "totoro",
         "meme",
         "roll",
-        "karma",
         "slap",
         "oksana"
     ]
