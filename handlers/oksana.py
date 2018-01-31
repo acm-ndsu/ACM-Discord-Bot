@@ -38,7 +38,8 @@ class OksanaHandler(MessageHandler):
                 "I will wait for you to log in and then we will do the blah blah blah",
                 "If you make decision to be in my class, be strong, drink milk, take the vitamins",
                 "International students, if you are traveling home, do your best not to fail the class",
-                "Welcome to the new trouble in your life"
+                "Welcome to the new trouble in your life",
+                "Try to smile, don't cry"
             ])
 
             await client.send_message(message.channel, phrase)
