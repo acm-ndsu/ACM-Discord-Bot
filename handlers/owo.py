@@ -12,7 +12,7 @@ class Module(HandlerModule):
         self.handlers.append( owoHandler() )
 
 
-class TestHandler(MessageHandler):
+class owoHandler(MessageHandler):
     def __init__(self):
         self.signal = "owo"
 
