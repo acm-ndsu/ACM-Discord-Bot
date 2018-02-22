@@ -4,7 +4,7 @@ from handlers.message_handler import HandlerModule, MessageHandler
 
 class Module(HandlerModule):
     def __init__(self):
-        super().__init__("test")
+        super().__init__("owo")
 
 
     def init_handlers(self):
@@ -34,3 +34,4 @@ class owoHandler(MessageHandler):
         if self.signal in thing:
 
             await client.edit_message(message.channel, "What's this?")
+            await client.send_message(message.channel, responses[choice])
