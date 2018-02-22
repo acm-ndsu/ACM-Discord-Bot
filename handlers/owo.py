@@ -14,7 +14,7 @@ class Module(HandlerModule):
 
 class TestHandler(MessageHandler):
     def __init__(self):
-        self.signal = "!OWO"
+        self.signal = "owo"
 
         # params to dispay in help meesages
         self.params = ""
@@ -30,6 +30,7 @@ class TestHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        thing = message.content.lower()
+        if (thing.includes(self.signal)):
 
             await client.edit_message(message.channel, "What's this?")
