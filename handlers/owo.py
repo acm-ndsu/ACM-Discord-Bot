@@ -34,4 +34,3 @@ class owoHandler(MessageHandler):
         if self.signal in thing:
 
             await client.edit_message(message.channel, "What's this?")
-            await client.send_message(message.channel, responses[choice])
