@@ -4,7 +4,7 @@ from handlers.message_handler import HandlerModule, MessageHandler
 
 class Module(HandlerModule):
     def __init__(self):
-        super().__init__("test")
+        super().__init__("owo")
 
 
     def init_handlers(self):
