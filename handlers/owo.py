@@ -31,6 +31,6 @@ class owoHandler(MessageHandler):
     async def handle_message(self, client, message, state):
 
         thing = message.content.lower()
-        if (thing.includes(self.signal)):
+        if self.signal in thing:
 
             await client.edit_message(message.channel, "What's this?")
