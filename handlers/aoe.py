@@ -203,7 +203,7 @@ class aoeHandler(MessageHandler):
 					if parts[1].lower() == "m":
 						vers = 0
 						try: num = int(parts[2])
-                        except ValueError: num = randint(1, 44)
+                        except ValueError: num = random.randint(1, 44)
 					else:
 						try:
 							num = int(parts[1])
@@ -213,7 +213,7 @@ class aoeHandler(MessageHandler):
 							if vers == 0: num = random.randint(1, 44)
 							elif vers == 1: num = random.randint(1, 25)
 							elif vers == 2: num = random.randint(1, 42)
-							else: num = randint(1, 33)
+							else: num = random.randint(1, 33)
 			elif len(parts) > 1: # There SHOULD exist "!AoE num"
 				try:
 					vers = 2
