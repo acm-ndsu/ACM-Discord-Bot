@@ -22,7 +22,7 @@ class aoeHandler(MessageHandler):
         # displayed when !help is called
         self.short_description = " Age of Empires taunter"
 
-        # displatyed when !help test is called
+        # displatyed when !help aoe is called
         self.long_description = " Uses optional AoE version (1-3 + M, default: 2) and taunt number to generate taunts"
 		
 		# Preload dictionaries
