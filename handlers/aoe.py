@@ -191,55 +191,57 @@ class aoeHandler(MessageHandler):
     async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
-            parts = message.content.split(" ")
-            for part in parts:
-                part.strip()
-            
-            if len(parts) > 2: # There SHOULD exist at least "!AoE ver num"
-                try:
-                    vers = int(parts[1])
-                    num = int(parts[2])
-                except ValueError:
-                    if parts[1].lower() == "m":
-                        vers = 0
-                        try: num = int(parts[2])
-                        except ValueError: num = random.randint(1, 44)
-                    else:
-                        try:
-                            num = int(parts[1])
-                            vers = 2
-                        except ValueError: 
-                            vers = random.randint(0, 3)
-                            if vers == 0: num = random.randint(1, 44)
-                            elif vers == 1: num = random.randint(1, 25)
-                            elif vers == 2: num = random.randint(1, 42)
-                            else: num = random.randint(1, 33)
-            elif len(parts) > 1: # There SHOULD exist "!AoE num"
-                try:
-                    vers = 2
-                    num = int(parts[1])
-                except ValueError:
-                    vers = random.randint(0, 3)
-                    if vers == 0: num = random.randint(1, 44)
-                    elif vers == 1: num = random.randint(1, 25)
-                    elif vers == 2: num = random.randint(1, 42)
-                    else: num = random.randint(1, 33)
-            else:
+        send = None
+        parts = message.content.split(" ")
+        
+        for part in parts:
+            part.strip()
+        
+        if len(parts) > 2: # There SHOULD exist at least "!AoE ver num"
+            try:
+                vers = int(parts[1])
+                num = int(parts[2])
+            except ValueError:
+                if parts[1].lower() == "m":
+                    vers = 0
+                    try: num = int(parts[2])
+                    except ValueError: num = random.randint(1, 44)
+                else:
+                    try:
+                        num = int(parts[1])
+                        vers = 2
+                    except ValueError: 
+                        vers = random.randint(0, 3)
+                        if vers == 0: num = random.randint(1, 44)
+                        elif vers == 1: num = random.randint(1, 25)
+                        elif vers == 2: num = random.randint(1, 42)
+                        else: num = random.randint(1, 33)
+        elif len(parts) > 1: # There SHOULD exist "!AoE num"
+            try:
+                vers = 2
+                num = int(parts[1])
+            except ValueError:
                 vers = random.randint(0, 3)
                 if vers == 0: num = random.randint(1, 44)
                 elif vers == 1: num = random.randint(1, 25)
                 elif vers == 2: num = random.randint(1, 42)
                 else: num = random.randint(1, 33)
-            
-            
-                try: 
-                    send = versions[vers][num]
-                except KeyError:
-                    '''vers = random.randint(0, 3)
-                    if vers == 0: num = random.randint(1, 44)
-                    elif vers == 1: num = random.randint(1, 25)
-                    elif vers == 2: num = random.randint(1, 42)
-                    else: num = random.randint(1, 33)
-                    send = versions[vers][num]'''
-                    send = "I am sorry, that does not exist."
-            await client.edit_message(message.channel, send)
+        else:
+            vers = random.randint(0, 3)
+            if vers == 0: num = random.randint(1, 44)
+            elif vers == 1: num = random.randint(1, 25)
+            elif vers == 2: num = random.randint(1, 42)
+            else: num = random.randint(1, 33)
+        
+        
+            try: 
+                send = versions[vers][num]
+            except KeyError:
+                '''vers = random.randint(0, 3)
+                if vers == 0: num = random.randint(1, 44)
+                elif vers == 1: num = random.randint(1, 25)
+                elif vers == 2: num = random.randint(1, 42)
+                else: num = random.randint(1, 33)
+                send = versions[vers][num]'''
+                send = "I am sorry, that does not exist."
+        await client.send_message(message.channel, send)
