@@ -33,13 +33,15 @@ class DifferenceHandler(MessageHandler):
             comparison = message.content.split(" ")
             if len(comparison) < 2:
                 await client.send_message(message.channel, "Excuse me but there's nothing there.")
-            if len(comparison) < 3:
+            elif len(comparison) < 3:
                 await client.send_message(message.channel, "Compare that and what?")
             elif "anime" in message.content.lower():
                 if "trash" in message.content.lower():
                     await client.send_message(message.channel, "There is no difference.")
                 else:
                     await client.send_message(message.channel, "Easy, one of these things is trash, and the other thing probably is too.")
+            elif "robbot" in message.content.lower() and "human" in message.content.lower():
+                await client.send_message(message.channel, "There is no difference.")
             else:
                 good = False
                 while (not good):
