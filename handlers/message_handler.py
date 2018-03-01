@@ -61,7 +61,7 @@ class MessageHandler:
 
     def handle_help(self, command_name=None):
 
-        if command_name is None:
+        if command_name is None or command_name.strip() == "":
             output = ""
             output += "{} {}: {}".format(
                     self.signal,
@@ -76,5 +76,8 @@ class MessageHandler:
                     self.params,
                     self.long_description)
             return output
+        else:
+            return ""
+
 
 

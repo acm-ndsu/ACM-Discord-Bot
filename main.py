@@ -23,7 +23,6 @@ async def on_message(message):
 
         content = message.content.replace("!help", "").strip()
 
-        print("a", content)
         if len(content) == 0:
             output = "```\n"
             for module in modules:
@@ -41,7 +40,7 @@ async def on_message(message):
             for module in modules:
                 output += module.handle_help(command_name=signal)
 
-            await module.send_message(message.channel, output)
+            await client.send_message(message.channel, output)
     else:
 
         for module in modules:
