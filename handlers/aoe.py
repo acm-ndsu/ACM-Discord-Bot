@@ -191,7 +191,7 @@ class aoeHandler(MessageHandler):
     async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
-            parts = message.split(" ")
+            parts = message.content.split(" ")
             for part in parts:
                 part.strip()
             
