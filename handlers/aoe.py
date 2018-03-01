@@ -234,14 +234,14 @@ class aoeHandler(MessageHandler):
                 else: num = random.randint(1, 33)
             
             
-                try: 
-                    send = versions[vers][num]
-                except KeyError:
-                    '''vers = random.randint(0, 3)
-                    if vers == 0: num = random.randint(1, 44)
-                    elif vers == 1: num = random.randint(1, 25)
-                    elif vers == 2: num = random.randint(1, 42)
-                    else: num = random.randint(1, 33)
-                    send = versions[vers][num]'''
-                    send = "I am sorry, that does not exist."
+            try: 
+                send = versions[vers][num]
+            except KeyError:
+                '''vers = random.randint(0, 3)
+                if vers == 0: num = random.randint(1, 44)
+                elif vers == 1: num = random.randint(1, 25)
+                elif vers == 2: num = random.randint(1, 42)
+                else: num = random.randint(1, 33)
+                send = versions[vers][num]'''
+                send = "I am sorry, that does not exist."
             await client.send_message(message.channel, send)
