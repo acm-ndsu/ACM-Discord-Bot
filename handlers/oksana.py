@@ -39,7 +39,8 @@ class OksanaHandler(MessageHandler):
                 "If you make decision to be in my class, be strong, drink milk, take the vitamins",
                 "International students, if you are traveling home, do your best not to fail the class",
                 "Welcome to the new trouble in your life",
-                "Try to smile, don't cry"
+                "Try to smile, don't cry",
+                "Wait for me. I will bring the person who is responsible."
             ])
 
             await client.send_message(message.channel, phrase)
