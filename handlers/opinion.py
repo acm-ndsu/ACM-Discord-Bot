@@ -101,7 +101,7 @@ class OpinionHandler(MessageHandler):
                 "Do you agree?",
                 "I hope you would say the same!",
                 "I know it's not that popular of an opinion.",
-                "I know others tend to agree."
+                "I know others tend to agree.",
                 "Thoughts?",
                 "What do you think?"
             ])
