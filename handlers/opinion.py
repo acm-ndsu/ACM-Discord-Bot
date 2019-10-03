@@ -30,17 +30,19 @@ class OpinionHandler(MessageHandler):
 
             adjective = random.choice([
                 "",
-                "bold",
-                "brutally honest",
-                "controversial",
-                "honest",
-                "humble",
-                "insightful",
-                "off-color",
-                "off-the-record",
-                "perceptive",
-                "true",
-                "undebatable"
+                "",
+                "",
+                "bold ",
+                "brutally honest ",
+                "controversial ",
+                "honest ",
+                "humble ",
+                "insightful ",
+                "off-color ",
+                "off-the-record ",
+                "perceptive ",
+                "true ",
+                "undebatable "
             ])
 
             opening_remarks = random.choice([
@@ -53,22 +55,39 @@ class OpinionHandler(MessageHandler):
 
             language_options = [
                 "Ada",
+                "ALGOL 68",
                 "Basic",
                 "C",
                 "C#",
                 "C++",
+                "COBOL",
                 "CSS",
+                "F#",
+                "Fortran",
+                "Go",
+                "Haskell",
                 "HTML",
                 "Java",
                 "Javascript",
+                "Kotlin",
                 "LambdaMOO",
                 "Lisp",
+                "Matlab",
+                "Objective-C",
                 "Pascal",
+                "Perl",
                 "PHP",
                 "Prolog",
                 "Python",
+                "R",
                 "Ruby",
+                "Rust",
+                "Scratch",
+                "Shakespeare",
+                "Shell",
+                "SQL",
                 "Swift",
+                "Typescript",
                 "Visual Basic"
             ]
 
@@ -82,18 +101,23 @@ class OpinionHandler(MessageHandler):
             opinion = random.choice([
                 "could use some more work.",
                 "is a gift to mankind!",
+                "is a good language.",
+                "is a great language.",
                 "is actually pretty good.",
                 "is decent.",
                 "is my favorite programming language.",
                 "is the worst language created.",
                 "is wonderful!",
+                "has more cons than pros.",
+                "has more pros than cons.",
                 "needs improvements.",
                 "should be banned from GitHub.",
                 "shouldn't be considered a language."
-
             ])
 
             closing_remarks = random.choice([
+                "",
+                "",
                 "",
                 "Any arguments?",
                 "But hey, that's just my opinion. A robbot opinion.",
@@ -102,11 +126,13 @@ class OpinionHandler(MessageHandler):
                 "I hope you would say the same!",
                 "I know it's not that popular of an opinion.",
                 "I know others tend to agree.",
+                "I think.",
+                "Maybe I'm wrong.",
                 "Thoughts?",
                 "What do you think?"
             ])
 
-            my_opinion = "In my " + adjective + " opinion, " + \
+            my_opinion = "In my " + adjective + "opinion, " + \
                          opening_remarks + language + " " + opinion + " " + closing_remarks
 
             await client.send_message(message.channel, my_opinion)
