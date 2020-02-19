@@ -42,4 +42,4 @@ class TotoroHandler(MessageHandler):
             ```
             """
 
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)

@@ -282,5 +282,5 @@ class ElizaHandler(MessageHandler):
 
             msg = analyze(content)
 
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
 

@@ -75,4 +75,4 @@ class ComplimentHandler(MessageHandler):
 
             phrase = "Your " + noun + " " + verb + " " + adj + "."
 
-            await client.send_message(message.channel, phrase)
+            await message.channel.send(phrase)

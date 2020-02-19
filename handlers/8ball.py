@@ -30,7 +30,7 @@ class EightBallHandler(MessageHandler):
         if message.content.startswith(self.signal):
 
             if len(message.content.split(" ")) < 2:
-                await client.send_message(message.channel, "What?")
+                await message.channel.send("What?")
             else:
                 responses = [
                 "It is certain",
@@ -62,4 +62,4 @@ class EightBallHandler(MessageHandler):
                 else:
                     choice = random.randint(0,19)
 
-                await client.send_message(message.channel, responses[choice])
+                await message.channel.send(responses[choice])
