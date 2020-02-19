@@ -54,7 +54,7 @@ class HugHandler(MessageHandler):
                 "{} hugs {}. *You'll float too....*",
             ])
 
-            await client.send_message(message.channel, phrase.format(message.author.mention, target))
+            await message.channel.send(phrase.format(message.author.mention, target))
 
 
 class CountHandler(MessageHandler):
@@ -79,7 +79,7 @@ class CountHandler(MessageHandler):
             if has_counts:
 
                 msg = "{} has been hugged {} times".format(message.author.mention, state["counts"][message.author.mention])
-                await client.send_message(message.channel, msg)
+                await message.channel.send(msg)
             else:
-                await client.send_message(message.channel, "No hugs for you. So far...")
+                await message.channel.send("No hugs for you. So far...")
 

@@ -241,4 +241,4 @@ class aoeHandler(MessageHandler):
                 else: num = random.randint(1, 33)
                 send = versions[vers][num]'''
                 send = "I am sorry, that does not exist."
-            await client.send_message(message.channel, send)
+            await message.channel.send(send)

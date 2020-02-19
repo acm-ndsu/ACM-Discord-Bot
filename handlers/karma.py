@@ -8,7 +8,7 @@ from handlers.message_handler import HandlerModule, MessageHandler
 
 def get_user_karma(state, uuid):
     amt = state["karma"].get(uuid, 0)
-    msg = "<@" + uuid + ">: karma is at " + str(amt)
+    msg = f"<@{uuid}>: karma is at {amt}"
     return msg
 
 def add_user_karma(state, uuid, amount):
@@ -18,7 +18,7 @@ def add_user_karma(state, uuid, amount):
         state["karma"][uuid] = 0
     state["karma"][uuid] += amount
 
-    msg = "<@" + uuid + ">: karma is now " + str(state["karma"][uuid])
+    msg = f"<@{uuid}>: karma is now {state['karma'][uuid]}"
     return msg
 
 
@@ -75,7 +75,7 @@ class GiveTakeKarmaHandler(MessageHandler):
                     msg = add_user_karma(state, user, amount)
 
         if msg is not None:
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
 
 
 class CheckSelfKarmaHandler(MessageHandler):
@@ -103,7 +103,7 @@ class CheckSelfKarmaHandler(MessageHandler):
                     msg = get_user_karma(state, message.author.id)
 
         if msg is not None:
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
 
 
 class CheckKarmaHandler(MessageHandler):
@@ -131,6 +131,6 @@ class CheckKarmaHandler(MessageHandler):
                     if m is not None:
                         msg = get_user_karma(state, m.group(1))
         if msg is not None:
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
 
 

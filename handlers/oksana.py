@@ -55,5 +55,5 @@ class OksanaHandler(MessageHandler):
                 "That's all for your torture today. We will proceed next class on Wednesday"
             ])
 
-            await client.send_message(message.channel, phrase)
+            await message.channel.send(phrase)
 

@@ -32,4 +32,4 @@ class TestHandler(MessageHandler):
 
         if message.content.startswith(self.signal):
 
-            await client.edit_message(message.channel, 'Your number {}.'.format(random.randint(0, 10000)))
+            await message.channel.send(f"Your number is {random.randint(0, 10000)}.")

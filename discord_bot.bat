@@ -1,2 +1,2 @@
-cd C:\Users\NDSU ACM\ACM-Discord-Bot
+cd C:\Users\ACM Member\Documents\Git\ACM-Discord-Bot
 python main.py

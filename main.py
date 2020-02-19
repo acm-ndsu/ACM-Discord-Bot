@@ -29,7 +29,7 @@ async def on_message(message):
                 output += module.handle_help() + "\n"
             output += "```"
 
-            await client.send_message(message.author, output)
+            await message.channel.send(output)
 
         else:
             content = content.split()
@@ -40,7 +40,7 @@ async def on_message(message):
             for module in modules:
                 output += module.handle_help(command_name=signal)
 
-            await client.send_message(message.channel, output)
+            await message.channel.send(output)
     else:
 
         for module in modules:
@@ -49,7 +49,7 @@ async def on_message(message):
 
         if message.content.startswith('!sleep'):
             await asyncio.sleep(5)
-            await client.send_message(message.channel, 'Done sleeping')
+            await message.channel.send("Done sleeping")
 
 if __name__ == "__main__":
 

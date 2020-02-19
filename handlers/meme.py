@@ -50,4 +50,4 @@ class MemeHandler(MessageHandler):
             msg = response.json()["data"]["url"]
 
 
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
