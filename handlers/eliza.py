@@ -278,7 +278,11 @@ class ElizaHandler(MessageHandler):
 
         if message.content.startswith(self.signal):
             if " " not in message.content:
-                await message.channel.send(random.choice(["Hmm?", "Did you saying something?", "Take your time to think of something to say."]))
+                await message.channel.send(random.choice([
+                    "Hmm?", 
+                    "Did you say something?", 
+                    "Take your time to think of something to say."
+                    ]))
                 return
             signal, content = message.content.split(" ", 1)
 

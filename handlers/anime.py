@@ -110,13 +110,13 @@ class AnimeHandler(MessageHandler):
 
         if message.content.startswith(self.signal):
 
-            msg = message.content.replace(self.signal+" ", "")
+            msg = message.content.replace(self.signal, "")
 
             if "|" in msg:
                 top, bottom = msg.split("|")
             else:
                 top = " "
-                bottom = " "
+                bottom = msg if msg else " "
 
             meme_id = random.choice(self.ids)
 
