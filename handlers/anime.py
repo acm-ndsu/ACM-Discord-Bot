@@ -110,8 +110,14 @@ class AnimeHandler(MessageHandler):
 
         if message.content.startswith(self.signal):
 
-            msg = message.content.replace(self.signal+" ", "")
-            top, bottom = msg.split("|")
+            msg = message.content.replace(self.signal, "")
+
+            if "|" in msg:
+                top, bottom = msg.split("|")
+            else:
+                top = " "
+                bottom = msg if msg else " "
+
             meme_id = random.choice(self.ids)
 
             response = requests.post("https://api.imgflip.com/caption_image", data={
@@ -125,4 +131,4 @@ class AnimeHandler(MessageHandler):
             msg = response.json()["data"]["url"]
 
 
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)

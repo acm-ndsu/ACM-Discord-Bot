@@ -277,10 +277,16 @@ class ElizaHandler(MessageHandler):
     async def handle_message(self, client, message, state):
 
         if message.content.startswith(self.signal):
-
+            if " " not in message.content:
+                await message.channel.send(random.choice([
+                    "Hmm?", 
+                    "Did you say something?", 
+                    "Take your time to think of something to say."
+                    ]))
+                return
             signal, content = message.content.split(" ", 1)
 
             msg = analyze(content)
 
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)
 

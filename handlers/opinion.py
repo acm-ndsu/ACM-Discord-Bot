@@ -135,4 +135,4 @@ class OpinionHandler(MessageHandler):
             my_opinion = "In my " + adjective + "opinion, " + \
                          opening_remarks + language + " " + opinion + " " + closing_remarks
 
-            await client.send_message(message.channel, my_opinion)
+            await message.channel.send(my_opinion)

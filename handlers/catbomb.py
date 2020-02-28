@@ -37,4 +37,4 @@ class CatBombHandler(MessageHandler):
 
             msg = response.text.split('"')[5]
 
-            await client.send_message(message.channel, msg)
+            await message.channel.send(msg)

@@ -32,5 +32,5 @@ class owoHandler(MessageHandler):
 
         thing = message.content.lower()
         if self.signal in thing:
-            await client.send_message(message.channel, "What's this?")
+            await message.channel.send("What's this?")
             
