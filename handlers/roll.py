@@ -36,7 +36,7 @@ class RollHandler(MessageHandler):
                     count = int(parts[0])
                     sides = int(parts[1])
                 except (IndexError, ValueError):
-                    message.channel.send("Not in XdY format; assuming 1d6")
+                    await message.channel.send("Not in XdY format; assuming 1d6")
             if sides > 100:
                 msg = "Sides > 100 not supported."
             elif sides < 2:
@@ -53,6 +53,7 @@ class RollHandler(MessageHandler):
                     r = random.randint(1, sides)
                     rolls += str(r) + ", "
                     total += r
+                rolls = rolls.strip(", ")
                 msg = message.author.mention + " rolled {0:d}d{1:d}..."
                 msg += "\n{2:s}\nTotal: {3:d}"
                 msg = msg.format(count, sides, rolls, total)
