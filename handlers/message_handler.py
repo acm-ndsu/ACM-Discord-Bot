@@ -63,7 +63,7 @@ class MessageHandler:
 
         if command_name is None or command_name.strip() == "":
             output = ""
-            output += "{} {}: {}".format(
+            output += "{} {}: {}\n".format(
                     self.signal,
                     self.params,
                     self.short_description)
@@ -71,13 +71,10 @@ class MessageHandler:
 
         elif command_name == self.signal or command_name == self.signal[1:]:
             output = ""
-            output += "{} {}: {}".format(
+            output += "{} {}: {}\n".format(
                     self.signal,
                     self.params,
                     self.long_description)
             return output
         else:
             return ""
-
-
-

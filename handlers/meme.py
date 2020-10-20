@@ -33,7 +33,7 @@ class MemeHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
 
             msg = message.content.replace(self.signal, "")
 

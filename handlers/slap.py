@@ -28,7 +28,7 @@ class SlapHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
             split = message.content.split(" ", 1)
             if not len(split) > 1:
                 return # bad input
@@ -71,7 +71,7 @@ class SlapCountHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
 
             split = message.content.split(" ", 1)
             if len(split) > 1:
@@ -87,6 +87,3 @@ class SlapCountHandler(MessageHandler):
                     await message.channel.send(msg)
                 else:
                     await message.channel.send("People must like you, you haven't been slapped. Yet.")
-
-
-

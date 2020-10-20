@@ -26,7 +26,7 @@ class OpinionHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
 
             adjective = random.choice([
                 "",

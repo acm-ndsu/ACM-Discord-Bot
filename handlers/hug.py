@@ -30,7 +30,7 @@ class HugHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal) and "count" not in message.content:
+        if message.content.lower().startswith(self.signal) and "count" not in message.content:
 
             # this should allow for !hug @entity message
             split = message.content.split(" ")
@@ -73,7 +73,7 @@ class CountHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal) and "count" in message.content:
+        if message.content.lower().startswith(self.signal) and "count" in message.content:
 
             has_counts = ( "counts" in state and message.author.mention in state["counts"] )
             if has_counts:
@@ -82,4 +82,3 @@ class CountHandler(MessageHandler):
                 await message.channel.send(msg)
             else:
                 await message.channel.send("No hugs for you. So far...")
-

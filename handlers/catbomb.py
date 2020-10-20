@@ -28,7 +28,7 @@ class CatBombHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
 
             response = requests.post("http://thecatapi.com/api/images/get", params={
                 "api_key": "MjIyNDAx",

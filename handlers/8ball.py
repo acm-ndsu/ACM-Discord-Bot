@@ -27,7 +27,7 @@ class EightBallHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
 
             if len(message.content.split(" ")) < 2:
                 await message.channel.send("What?")
