@@ -26,7 +26,7 @@ async def on_message(message):
         if len(content) == 0:
             output = "```\n"
             for module in modules:
-                output += module.handle_help() + "\n"
+                output += module.handle_help()
             output += "```"
 
             await message.channel.send(output)
