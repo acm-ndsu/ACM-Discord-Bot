@@ -70,7 +70,7 @@ class OksanaHandler(MessageHandler):
                 "We will have a quiz over break",
                 "You are students you should suffer",
                 "The work of art from graders. I will close and then grade myself.",
-                "This is the story with grading. It is very difficult to ask our graders to do their job properly.",
+                "This is the story with grading. It is very difficult to ask our graders to do their job properly."
             ])
 
             await message.channel.send(phrase)
