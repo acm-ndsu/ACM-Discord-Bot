@@ -27,7 +27,7 @@ class RollHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
         args = message.content.split(" ", 1)
-        if args[0] == self.signal:
+        if args[0].lower() == self.signal:
             sides = 6
             count = 1
             if len(args) > 1:

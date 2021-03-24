@@ -256,7 +256,6 @@ class Module(HandlerModule):
         super().__init__("eliza")
 
     def init_handlers(self):
-
         self.handlers.append( ElizaHandler() )
 
 
@@ -276,7 +275,7 @@ class ElizaHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
             if " " not in message.content:
                 await message.channel.send(random.choice([
                     "Hmm?", 
@@ -289,4 +288,3 @@ class ElizaHandler(MessageHandler):
             msg = analyze(content)
 
             await message.channel.send(msg)
-

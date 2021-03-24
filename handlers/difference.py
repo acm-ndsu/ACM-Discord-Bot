@@ -28,7 +28,7 @@ class DifferenceHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
             
             comparison = message.content.split(" ")
             if len(comparison) < 2:

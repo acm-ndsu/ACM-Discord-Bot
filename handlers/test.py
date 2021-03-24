@@ -26,10 +26,8 @@ class TestHandler(MessageHandler):
         self.long_description = " Generates a random number between 0 and 10000"
 
 
-
-
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
 
             await message.channel.send(f"Your number is {random.randint(0, 10000)}.")

@@ -55,7 +55,7 @@ class GiveTakeKarmaHandler(MessageHandler):
         m = re.search(r'<@!?(\d+)>\s*(\+\++|--+)$', message.content, re.DOTALL)
 
         if m is not None:
-            user = m.group(1)
+            user = message.mentions[0].id if len(message.mentions) else m.group(1)
             amount_str = m.group(2)
             amount = len(amount_str) - 1
 
@@ -97,7 +97,7 @@ class CheckSelfKarmaHandler(MessageHandler):
         if m is None:
 
             args = message.content.split(" ", 1)
-            if args[0] == self.signal:
+            if args[0].lower() == self.signal:
 
                 if len(args) < 2:
                     msg = get_user_karma(state, message.author.id)
@@ -124,7 +124,7 @@ class CheckKarmaHandler(MessageHandler):
         if m is None:
 
             args = message.content.split(" ", 1)
-            if args[0] == self.signal:
+            if args[0].lower() == self.signal:
 
                 if len(args) > 1:
                     m = re.search(r'<@!?(\d+)>', args[1], re.DOTALL)
@@ -132,5 +132,3 @@ class CheckKarmaHandler(MessageHandler):
                         msg = get_user_karma(state, m.group(1))
         if msg is not None:
             await message.channel.send(msg)
-
-

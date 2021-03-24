@@ -26,8 +26,6 @@ class owoHandler(MessageHandler):
         self.long_description = " No really, what is this?"
 
 
-
-
     async def handle_message(self, client, message, state):
 
         thing = message.content.lower()

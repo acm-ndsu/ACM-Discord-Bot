@@ -28,7 +28,7 @@ class OksanaHandler(MessageHandler):
 
     async def handle_message(self, client, message, state):
 
-        if message.content.startswith(self.signal):
+        if message.content.lower().startswith(self.signal):
             phrase = random.choice([
                 "You all have decision to make, drop class and be happy or stay in class and suffer. Your choice.",
                 "You are lucky people. No pen, no book, no knowledge, and you are happy.",
@@ -56,4 +56,3 @@ class OksanaHandler(MessageHandler):
             ])
 
             await message.channel.send(phrase)
-
