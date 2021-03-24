@@ -52,7 +52,25 @@ class OksanaHandler(MessageHandler):
                 "You have the book for PHP. I am absolutely certain you will not read it",
                 "In the method called \"wake up or I will kill you all\"",
                 "You will not share work, or you will die peacefully in my class.",
-                "That's all for your torture today. We will proceed next class on Wednesday"
+                "That's all for your torture today. We will proceed next class on Wednesday",
+                "It is possible too",
+                "After.....psh",
+                "Another story...remember the story with constructor?",
+                "Remote students wake up!",
+                "Or another story, reference data types",
+                "It is nothing special, same thing with Java",
+                "Java, nothing special!",
+                "It is a simulation!",
+                "And now we will start with the c++",
+                "Again, question for the exam!",
+                "One second...",
+                "This is the story of copy and paste.",
+                "If you have exception handling In the language you are lucky",
+                "Survive until the end of the PowerPoint because we have exam",
+                "We will have a quiz over break",
+                "You are students you should suffer",
+                "The work of art from graders. I will close and then grade myself.",
+                "This is the story with grading. It is very difficult to ask our graders to do their job properly."
             ])
 
             await message.channel.send(phrase)
