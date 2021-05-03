@@ -15,7 +15,7 @@ class HandlerModule:
             try:
                 with open(self.pickle_file, 'rb') as f:
                     self.shared_state = pickle.load(f)
-            except FileNotFoundError:
+            except (FileNotFoundError, EOFError):
                 self.shared_state = {}
         else:
             self.shared_state = {}
