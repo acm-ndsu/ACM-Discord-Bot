@@ -34,7 +34,7 @@ class OksanaHandler(MessageHandler):
                 "You are lucky people. No pen, no book, no knowledge, and you are happy.",
                 "Everyone with the code",
                 "It is not a problem with the server it is a problem with the Monday",
-                "Now I will show you the face of the person who is responsible for all this trouble, atleast you will have the enemy in front of you.",
+                "Now I will show you the face of the person who is responsible for all this trouble, at least you will have the enemy in front of you.",
                 "I will wait for you to log in and then we will do the blah blah blah",
                 "If you make decision to be in my class, be strong, drink milk, take the vitamins",
                 "International students, if you are traveling home, do your best not to fail the class",
