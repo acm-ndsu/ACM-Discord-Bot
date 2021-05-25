@@ -22,8 +22,8 @@ class caltropHandler(MessageHandler):
         # displayed when !help is called
         self.short_description = " Returns an interesting Wiki article to distract you. "
 
-        # displatyed when !help aoe is called
-        self.long_description = " literally just !caltrop"
+        # displatyed when !help caltrops is called
+        self.long_description = " Inspired by XKCD 2467. Essentially just a scrape of https://en.wikipedia.org/wiki/Wikipedia:Unusual_articles "
 
         with open("../content/caltrops.json") as fl:
             self.caltrops = json.load(fl)
