@@ -54,6 +54,6 @@ class caltropHandler(MessageHandler):
                     
             try: 
                 send = "{0} | {1} ".format(desc, link)
-            except KeyError:
-                send = "Error encountered."
+            except Exception as ex:
+                send = "Error encountered. {0}".format(ex)
             await message.channel.send(send)
