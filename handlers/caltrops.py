@@ -17,7 +17,7 @@ class caltropHandler(MessageHandler):
         self.signal = "!caltrop"
 
         # params to dispay in help meesages
-        self.params = "<type | either none, computers, problem or unusual>"
+        self.params = "<type | either none, computer, problem or unusual>"
 
         # displayed when !help is called
         self.short_description = " Returns an interesting Wiki article to distract you. "
