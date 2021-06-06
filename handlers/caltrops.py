@@ -36,7 +36,6 @@ class caltropHandler(MessageHandler):
 
 
     async def handle_message(self, client, message, state):
-        
         if message.content.lower().startswith(self.signal):
             split = message.content.split(" ", 1)
             link, desc = ('','')
@@ -51,7 +50,6 @@ class caltropHandler(MessageHandler):
                     link, desc = random.choice(list(self.computers.items()))
                 else:
                     link, desc = random.choice(list(self.unusual.items()))
-                    
             try: 
                 send = "{0} | {1} ".format(desc, link)
             except Exception as ex:
