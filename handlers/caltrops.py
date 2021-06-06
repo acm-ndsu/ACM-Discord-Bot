@@ -25,13 +25,13 @@ class caltropHandler(MessageHandler):
         # displatyed when !help caltrops is called
         self.long_description = " Inspired by XKCD 2467. Essentially just a scrape of https://en.wikipedia.org/wiki/Wikipedia:Unusual_articles "
 
-        with open("../content/unusual.json") as fl:
+        with open("./content/unusual.json") as fl:
             self.unusual = json.load(fl)
             
-        with open("../content/problem.json") as fl:
+        with open("./content/problem.json") as fl:
             self.problem = json.load(fl)
         
-        with open("../content/computers.json") as fl:
+        with open("./content/computers.json") as fl:
             self.computers = json.load(fl)
 
 
