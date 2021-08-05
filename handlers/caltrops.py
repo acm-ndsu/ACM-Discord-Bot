@@ -2,6 +2,7 @@ import asyncio
 import random
 from handlers.message_handler import HandlerModule, MessageHandler
 import json
+import requests
 
 class Module(HandlerModule):
     def __init__(self):
@@ -60,6 +61,12 @@ class caltropHandler(MessageHandler):
                     link, desc = random.choice(list(self.computers.items()))
                 elif target == 'cat':
                     link, desc = random.choice(list(self.cat.items()))
+                elif target == 'random':
+                    target = split[1]
+                    response = requests.get("https://en.wikipedia.org/api/rest_v1/page/random/summary").json()
+                    link = response["content_urls"]["desktop"]["page"]
+                    # shorten the blurb if it's over 250 characters
+                    desc = response["extract"] if len(response["extract"]) < 250 else response["extraxt"][:250] + "..."
                 else:
                     link, desc = random.choice(list(self.unusual.items()))
             self.format_and_send_async(message, link, desc)
