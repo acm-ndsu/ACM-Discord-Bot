@@ -18,7 +18,8 @@
         "slap",
         "test",
         "totoro",
-        "caltrops"
+        "caltrops",
+        "mock"
     ],
     "disabled": [
     ]
