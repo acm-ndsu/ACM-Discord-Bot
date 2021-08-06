@@ -27,13 +27,14 @@ class MockHandler(MessageHandler):
             
             msg = message.content.replace(self.signal, "")
 
-            increment = 0
+            increment = 1
+            ret_msg = ""
             for i in range(len(msg)):
                 if increment % 2 == 0:
-                    msg[i] = msg[i].lower()
+                    ret_msg += msg[i].lower()
                 else:
-                    msg[i] = msg[i].upper()
+                    ret_msg += msg[i].upper()
                 increment += 1
 
-            await message.channel.send(msg)
+            await message.channel.send(ret_msg)
 
