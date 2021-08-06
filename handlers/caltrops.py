@@ -46,7 +46,7 @@ class caltropHandler(MessageHandler):
             send = "Error encountered. {0}".format(ex)
         await message.channel.send(send)
 
-    def handle_message(self, client, message, state):
+    async def handle_message(self, client, message, state):
         if message.content.lower().startswith(self.signal):
             split = message.content.split(" ", 1)
             link, desc = ('','')
