@@ -69,7 +69,7 @@ class caltropHandler(MessageHandler):
                     desc = response["extract"] if len(response["extract"]) < 250 else response["extraxt"][:250] + "..."
                 else:
                     link, desc = random.choice(list(self.unusual.items()))
-            self.format_and_send_async(message, link, desc)
+            await self.format_and_send_async(message, link, desc)
         elif message.content.lower().startswith(self.catsignal):
             link, desc = random.choice(list(self.cat.items()))
-            self.format_and_send_async(message, link, desc)
+            await self.format_and_send_async(message, link, desc)
