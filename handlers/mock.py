@@ -28,7 +28,7 @@ class MockHandler(MessageHandler):
             msg = message.content.replace(self.signal, "")
 
             increment = 0
-            for i in len(msg):
+            for i in range(len(msg)):
                 if increment % 2 == 0:
                     msg[i] = msg[i].lower()
                 else:
