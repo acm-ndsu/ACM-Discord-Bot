@@ -66,7 +66,7 @@ class caltropHandler(MessageHandler):
                     response = requests.get("https://en.wikipedia.org/api/rest_v1/page/random/summary").json()
                     link = response["content_urls"]["desktop"]["page"]
                     # shorten the blurb if it's over 250 characters
-                    desc = response["extract"] if len(response["extract"]) < 250 else response["extraxt"][:250] + "..."
+                    desc = response["extract"] if len(response["extract"]) < 250 else response["extract"][:250] + "..."
                 else:
                     link, desc = random.choice(list(self.unusual.items()))
             await self.format_and_send_async(message, link, desc)
