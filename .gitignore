@@ -1,9 +1,9 @@
 token.txt
 __pycache__/
 
-# stupid pycharm
+# great pycharm
 .idea/
+/venv/
 
 #pickle files
 *.pkl
-
