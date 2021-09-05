@@ -19,7 +19,7 @@ class caltropHandler(MessageHandler):
         self.catsignal = "!cattrop"
 
         # params to dispay in help meesages
-        self.params = "<type | either none, computer, problem, unusual, random, or cat>"
+        self.params = "<type | either none, computer, problem, unusual, myth, cat or random >"
 
         # displayed when !help is called
         self.short_description = " Returns an interesting Wiki article to distract you. "
@@ -38,6 +38,9 @@ class caltropHandler(MessageHandler):
 
         with open("./content/cat.json") as fl:
             self.cat = json.load(fl)
+
+        with open("./content/myth.json") as fl:
+            self.myth = json.load(fl)
 
     async def format_and_send_async(self, message, link, desc):
         try: 
@@ -61,6 +64,8 @@ class caltropHandler(MessageHandler):
                     link, desc = random.choice(list(self.computers.items()))
                 elif target == 'cat':
                     link, desc = random.choice(list(self.cat.items()))
+                elif target == 'myth':
+                    link, desc = random.choice(list(self.myth.items()))
                 elif target == 'random':
                     target = split[1]
                     try:
