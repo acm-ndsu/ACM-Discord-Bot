@@ -63,12 +63,12 @@ class caltropHandler(MessageHandler):
                     link, desc = random.choice(list(self.cat.items()))
                 elif target == 'random':
                     target = split[1]
-                    try:
-                        response = requests.get("https://en.wikipedia.org/api/rest_v1/page/random/summary").json()
+                    response = requests.get("https://en.wikipedia.org/api/rest_v1/page/random/summary").json()
+                    if response.ok:
                         link = response["content_urls"]["desktop"]["page"]
                         # shorten the blurb if it's over 250 characters
                         desc = response["extract"] if len(response["extract"]) < 250 else response["extract"][:250] + "..."
-                    except:
+                    else:
                         print(f'Error occurred with api request: {message}')
                 else:
                     link, desc = random.choice(list(self.unusual.items()))
