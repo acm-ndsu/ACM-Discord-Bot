@@ -29,12 +29,6 @@ class DogBombHandler(MessageHandler):
     async def handle_message(self, client, message, state):
 
         if message.content.lower().startswith(self.signal):
+            response = await requests.get("https://dog.ceo/api/breeds/image/random")
 
-            response = requests.post("http://thedogapi.com/api/images/get", params={
-                "api_key": "24ecc9b8-721d-458f-bef3-fcfbab7efd2a",
-                "format": "html"
-            })
-
-            msg = response.text.split('"')[5]
-
-            await message.channel.send(msg)
+            await message.channel.send(response["message"])
