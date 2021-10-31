@@ -30,5 +30,7 @@ class DogBombHandler(MessageHandler):
 
         if message.content.lower().startswith(self.signal):
             response = await requests.get("https://dog.ceo/api/breeds/image/random")
-
-            await message.channel.send(response["message"])
+            if response.ok:
+                await message.channel.send(response["message"])
+            else:
+                print(f"Error occured with api request: {message}")
