@@ -1,6 +1,6 @@
 
 import asyncio
-import random
+import json
 import requests
 from handlers.message_handler import HandlerModule, MessageHandler
 
@@ -29,8 +29,9 @@ class DogBombHandler(MessageHandler):
     async def handle_message(self, client, message, state):
 
         if message.content.lower().startswith(self.signal):
-            response = await requests.get("https://dog.ceo/api/breeds/image/random")
+            response = requests.get("https://dog.ceo/api/breeds/image/random")
             if response.ok:
-                await message.channel.send(response["message"])
+                url = json.loads(response.content)["message"]
+                await message.channel.send(url)
             else:
                 print(f"Error occured with api request: {message}")
