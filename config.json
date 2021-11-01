@@ -3,23 +3,24 @@
         "8ball",
         "anime",
         "aoe",
+        "caltrops",
         "catbomb",
         "compliment",
         "cowsay",
         "difference",
+        "dogbomb",
         "eliza",
         "hug",
         "karma",
         "meme",
+        "mock",
         "oksana",
         "opinion",
         "owo",
         "roll",
         "slap",
         "test",
-        "totoro",
-        "caltrops",
-        "mock"
+        "totoro"
     ],
     "disabled": [
     ]

@@ -3,7 +3,7 @@ __pycache__/
 
 # stupid pycharm
 .idea/
+/venv/
 
 #pickle files
 *.pkl
-
