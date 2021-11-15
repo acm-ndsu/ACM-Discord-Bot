@@ -52,7 +52,7 @@ class MemeHandler(MessageHandler):
                 "text0": top,
                 "text1": bottom
             })
-            embed = Embed(title= "{0} Meme".format(message.author.mention),color= 10489424)
+            embed = Embed(title= "{0} meme".format(message.author.name),color= 10489424)
             embed.set_image(url=response.json()["data"]["url"])
 
             await message.channel.send(embed=embed)
