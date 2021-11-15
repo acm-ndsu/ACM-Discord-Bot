@@ -3,6 +3,7 @@ import asyncio
 import random
 import requests
 from handlers.message_handler import HandlerModule, MessageHandler
+from discord import Embed
 
 
 class Module(HandlerModule):
@@ -51,8 +52,7 @@ class MemeHandler(MessageHandler):
                 "text0": top,
                 "text1": bottom
             })
+            embed = Embed(title= "{0} Meme".format(message.author.mention),color= 10489424)
+            embed.set_image(url=response.json()["data"]["url"])
 
-            msg = response.json()["data"]["url"]
-
-
-            await message.channel.send(msg)
+            await message.channel.send(embed=embed)
