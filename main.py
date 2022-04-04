@@ -59,13 +59,19 @@ if __name__ == "__main__":
 
     print("Loading Modules...")
     for module_name in config["handlers"]:
-        module = importlib.import_module("handlers." + module_name)
-        modules.append(module.Module())
+        try:
+            module = importlib.import_module("handlers." + module_name)
+            modules.append(module.Module())
+        except:
+            print("Failed to load module: " + module_name)
     print("Modules loaded.")
 
     print("Initializing Modules...")
     for module in modules:
-        module.init_handlers()
+        try:
+            module.init_handlers()
+        except:
+            print("Failed to initialize module: " + str(module))
     print("Modules initialized.")
 
 

@@ -44,8 +44,10 @@ class caltropHandler(MessageHandler):
 
     async def format_and_send_async(self, message, link, desc):
         try: 
+            print("here 1")
             send = "{0} | {1} ".format(desc, link)
         except Exception as ex:
+            print("here 2")
             send = "Error encountered. {0}".format(ex)
         await message.channel.send(send)
 
@@ -66,6 +68,8 @@ class caltropHandler(MessageHandler):
                     link, desc = random.choice(list(self.cat.items()))
                 elif target == 'myth':
                     link, desc = random.choice(list(self.myth.items()))
+                    print("link: " + str(link) + "\n")
+                    print("desc: " + str(desc) + "\n")
                 elif target == 'random':
                     target = split[1]
                     response = requests.get("https://en.wikipedia.org/api/rest_v1/page/random/summary")
@@ -81,4 +85,6 @@ class caltropHandler(MessageHandler):
             await self.format_and_send_async(message, link, desc)
         elif message.content.lower().startswith(self.catsignal):
             link, desc = random.choice(list(self.cat.items()))
+            print("link: " + str(link) + "\n")
+            print("desc: " + str(desc) + "\n")
             await self.format_and_send_async(message, link, desc)
