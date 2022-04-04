@@ -70,7 +70,16 @@ class OksanaHandler(MessageHandler):
                 "We will have a quiz over break",
                 "You are students you should suffer",
                 "The work of art from graders. I will close and then grade myself.",
-                "This is the story with grading. It is very difficult to ask our graders to do their job properly."
+                "This is the story with grading. It is very difficult to ask our graders to do their job properly.",
+                "So basically you shut up now and I keep talking.",
+                "Online students we are having a fire. We are coming back, do not dream I cancel the class.",
+                "Yes test is online, so use book. I am not watching in your home.",
+                "Open the Visual Studio and we wait...",
+                "Yes your project is wrong. No I do not tell why.",
+                "Use zoom now for office hours.",
+                "We have a question from the online...",
+                "Lovely company speak up, do not be shy"
+
             ])
 
             await message.channel.send(phrase)
